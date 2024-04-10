@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+  </head>
+  <body>
+    <form action="">
+      <p>
+        <label for="dateDefault">기본 설정: </label>
+        <input id="dateDefault" name="dateDefault" type="text" />
+      </p>
+      <p>
+        <label for="dateRange">범위 지정: </label>
+        <input id="dateRange" name="dateRange" type="text" />
+      </p>
+      <p>
+        <label for="dateDefault">주일에서만 선택: </label>
+        <input id="dateOnHolyday" name="dateOnHolyday" type="text" />
+      </p>
+      <button type="button" onclick="onSave()">저장</button>
+    </form>
+
+    <script>
+      flatpickr.localize(flatpickr.l10ns.ko);
+
+      flatpickr('#dateDefault'); // default 옵션
+      flatpickr('#dateRange', {
+        minDate: '2024-01-15',
+        maxDate: '2024-01-21',
+      });
+      flatpickr('#dateOnHolyday', {
+        enable: [
+          function (date) {
+            // return true to enable
+            return date.getDay() === 0;
+          },
+        ],
+      });
+
+      function onSave() {
+        let dateDefault = document.getElementById('dateDefault').value;
+        console.log('기본 설정 날짜: ' + dateDefault);
+
+        let dateRange = document.getElementById('dateRange').value;
+        console.log('범위 지정 날짜: ' + dateRange);
+
+        let dateOnHolyday = document.getElementById('dateOnHolyday').value;
+        console.log('주일에서만 선택 날짜: ' + dateOnHolyday);
+
+        alert(
+          `기본 설정 날짜: ${dateDefault}\n` +
+            `범위 지정 날짜: ${dateRange}\n` +
+            `주일에서만 선택 날짜: ${dateOnHolyday}`
+        );
+      }
+    </script>
+  </body>
+</html>
