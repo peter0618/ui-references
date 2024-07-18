@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    label {
+      display: flex;
+      align-items: center;
+    }
+
+    span::after {
+      padding-left: 5px;
+    }
+
+    input:invalid + span::after {
+      content: '✖';
+      color: red;
+    }
+
+    input:valid + span::after {
+      content: '✓';
+      color: green;
+    }
+  </style>
+  <body>
+    <form action="">
+      <label>
+        Choose your preferred party date (required, April 1st to 20th):
+        <input
+          id="date"
+          type="date"
+          name="party"
+          min="2017-04-01"
+          max="2017-04-20"
+          required
+        />
+        <span class="validity"></span>
+      </label>
+      <button type="button" onclick="onSave()">저장</button>
+    </form>
+
+    <script>
+      function onSave() {
+        let date = document.getElementById('date').value;
+        console.log(date);
+      }
+    </script>
+  </body>
+</html>
